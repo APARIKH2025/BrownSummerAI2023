@@ -1,0 +1,1 @@
+print(int(input("What is the number of hours: ")) * 60)
