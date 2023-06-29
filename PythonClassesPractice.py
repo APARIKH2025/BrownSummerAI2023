@@ -6,5 +6,6 @@ class Student:
  def aboutme(self):
     print("Hi, my name is " + self.name + " and I take " + self.course)
 
-s1 = Student("Anish", "Math")
-s1.aboutme()
+if __name__ == "__main__":
+   s1 = Student("Anish", "Math")
+   s1.aboutme()
