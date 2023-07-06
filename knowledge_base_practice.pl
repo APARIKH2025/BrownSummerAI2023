@@ -44,6 +44,7 @@ has_cuisine(Restaurant, Cuisine) :- cuisinesAll(Cuisines, Restaurants), member(R
 
 dietcheck(Location, Diet, Restaurant) :- streetsAll(Location, Restaurant), has_cuisine(Restaurant, Cuisines), has_diet(Cuisines, Diet).
 
+% Used to check if two lists have a common element
 common_elements(L1,L2) :- common_elements(L1,L2,[]).
 common_elements([],_,AC) :- length(AC,C),
                             C >= 1.
