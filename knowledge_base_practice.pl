@@ -38,4 +38,17 @@ location(Street, Restaurant) :- streetsAll(Street, Restaurants), member(Restaura
 
 dishcheck(Restaurant, Dish) :- serves(X, Dish), cuisine(Restaurant, X).
 
-dietcheck(Location, Diet, Restaurant) :- foodsAll(Diet, Y), location(Location, Restaurant), cuisine(Restaurant, Z), member(Y,Z).
+has_diet(Cuisine, Diet) :- foodsAll(Diet, Dishes), servesAll(Cuisine, Options), common_elements(Dishes, Options).
+
+has_cuisine(Restaurant, Cuisine) :- cuisinesAll(Cuisines, Restaurants), member(Restaurant, Restaurants), cuisine(Restaurant, Cuisine).
+
+dietcheck(Location, Diet, Restaurant) :- streetsAll(Location, Restaurant), has_cuisine(Restaurant, Cuisines), has_diet(Cuisines, Diet).
+
+common_elements(L1,L2) :- common_elements(L1,L2,[]).
+common_elements([],_,AC) :- length(AC,C),
+                            C >= 1.
+common_elements([P|_],L2,AC) :- member(P,L2),!,
+                                append(AC,[P],NAC),
+                                common_elements([],L2,NAC).
+common_elements([P|R],L2,AC) :- \+ member(P,L2),!,
+                                common_elements(R,L2,AC).
