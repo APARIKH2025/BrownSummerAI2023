@@ -36,3 +36,6 @@ streetsAll(wayland, [waterman_grille, red_stripe, pasta_beach, haruki, lims]).
 
 location(Street, Restaurant) :- streetsAll(Street, Restaurants), member(Restaurant, Restaurants).
 
+dishcheck(Restaurant, Dish) :- serves(X, Dish), cuisine(Restaurant, X).
+
+dietcheck(Location, Diet, Restaurant) :- foodsAll(Diet, Y), location(Location, Restaurant), cuisine(Restaurant, Z), member(Y,Z).
